@@ -1,0 +1,55 @@
+feat: initial commit of swiftETH library
+
+swiftETH is a modern Swift library for Ethereum and Web3 functionality,
+inspired by the architecture and design of oxlib.sh.
+
+Features:
+- Account generation and key management
+- Transaction signing with EIP-155 support
+- RLP encoding for transactions
+- JSON-RPC client for Ethereum interaction
+- Balance and nonce management
+- Message signing and signature recovery
+- EIP-55 address checksumming
+- Comprehensive test suite (36 tests, all passing)
+- SwiftUI demo application
+- Complete documentation
+
+Architecture:
+- Modular, composable design
+- Type-safe APIs with Swift's type system
+- Async/await for asynchronous operations
+- Security-first approach
+- oxlib.sh-inspired patterns
+
+Testing:
+- 7 test suites
+- 36 unit and integration tests
+- 588 lines of test code
+- 100% passing rate
+- Real Ethereum mainnet integration tests
+
+Documentation:
+- README.md: Project overview and usage
+- ARCHITECTURE.md: Detailed system design
+- TESTING.md: Testing guidelines
+- CONTRIBUTING.md: Contribution guide
+- .cursorrules: Development standards
+
+Dependencies:
+- secp256k1.swift: Elliptic curve cryptography
+- CryptoSwift: Keccak-256 hashing
+
+Configuration:
+- Environment variable support via .env files
+- Config.swift for centralized configuration management
+- Secure handling of API keys and test accounts
+- .env.example template with all available options
+
+Security:
+- No private keys in source code or version control
+- .env file in .gitignore
+- Comprehensive security warnings in test executables
+- Tests use randomly generated keys
+
+Package Name: swiftETH (lowercase 's', camelCase naming)

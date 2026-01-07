@@ -1,0 +1,79 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    name: Swift ${{ matrix.swift }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-13, macos-14]
+        swift: ["5.9"]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Swift
+      uses: swift-actions/setup-swift@v1
+      with:
+        swift-version: ${{ matrix.swift }}
+    
+    - name: Get Swift version
+      run: swift --version
+    
+    - name: Build
+      run: swift build -v
+    
+    - name: Run tests
+      run: swift test -v --enable-code-coverage
+    
+    - name: Generate code coverage
+      run: |
+        xcrun llvm-cov export -format="lcov" \
+          .build/debug/swiftETHPackageTests.xctest/Contents/MacOS/swiftETHPackageTests \
+          -instr-profile .build/debug/codecov/default.profdata > coverage.lcov
+      continue-on-error: true
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.lcov
+        flags: unittests
+        name: codecov-${{ matrix.os }}-swift-${{ matrix.swift }}
+      continue-on-error: true
+  
+  lint:
+    name: Swift Lint
+    runs-on: macos-14
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Check for compiler warnings
+      run: |
+        swift build 2>&1 | tee build.log
+        if grep -q "warning:" build.log; then
+          echo "Build contains warnings!"
+          exit 1
+        fi
+  
+  integration:
+    name: Integration Tests
+    runs-on: macos-14
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Swift
+      uses: swift-actions/setup-swift@v1
+      with:
+        swift-version: "5.9"
+    
+    - name: Run integration tests
+      run: swift test --filter IntegrationTests
+      timeout-minutes: 10

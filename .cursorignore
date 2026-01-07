@@ -1,0 +1,46 @@
+# Cursor IDE ignore file
+# Specifies files and directories that Cursor should not index or analyze
+
+# Build artifacts
+.build/
+build/
+DerivedData/
+
+# Swift Package Manager
+.swiftpm/
+*.xcodeproj
+*.xcworkspace
+
+# Dependencies
+Packages/
+.checkouts/
+
+# Logs
+*.log
+web3swift_debug.log
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+*.swp
+*.swo
+*~
+
+# Test artifacts
+.test/
+
+# Large binary files
+*.dylib
+*.so
+*.a
+
+# Documentation builds
+docs/_build/
+
+# Sensitive data
+*.pem
+*.key
+secrets/
+.env

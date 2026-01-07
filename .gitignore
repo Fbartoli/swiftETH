@@ -1,0 +1,51 @@
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+DerivedData/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Logs
+*.log
+web3swift_debug.log
+
+# IDE
+.vscode/
+*.swp
+*.swo
+*~
+.idea/
+
+# Build artifacts
+build/
+*.o
+*.so
+*.dylib
+*.a
+
+# Testing
+.test/
+
+# Sensitive data (never commit)
+*.pem
+*.key
+secrets/
+.env
+.env.local
+
+# Documentation builds
+docs/_build/
+.docs/
+
+# Temporary files
+*.tmp
+tmp/
+temp/
