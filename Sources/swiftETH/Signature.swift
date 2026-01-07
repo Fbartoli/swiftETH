@@ -101,7 +101,7 @@ extension Signature {
         }
         
         var signature = secp256k1_ecdsa_recoverable_signature()
-        var signatureBytes = r + s
+        let signatureBytes = r + s
         
         guard secp256k1_ecdsa_recoverable_signature_parse_compact(
             context,

@@ -7,6 +7,10 @@ Packages/
 xcuserdata/
 DerivedData/
 
+#cursor
+.cursorignore
+.cursorrules
+
 # macOS
 .DS_Store
 .AppleDouble
